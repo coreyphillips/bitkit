@@ -9,7 +9,6 @@ import CreateWallet, {
 import MultipleDevices from '../screens/Onboarding/MultipleDevices';
 import Passphrase from '../screens/Onboarding/Passphrase';
 import RestoreFromSeed from '../screens/Onboarding/RestoreFromSeed';
-import SlideshowScreen from '../screens/Onboarding/Slideshow';
 import TermsOfUse from '../screens/Onboarding/TermsOfUse';
 import WelcomeScreen from '../screens/Onboarding/Welcome';
 import { requiresRemoteRestoreSelector } from '../store/reselect/user';
@@ -18,7 +17,6 @@ import { walletExistsSelector } from '../store/reselect/wallet';
 export type OnboardingStackParamList = {
 	TermsOfUse: undefined;
 	Welcome: undefined;
-	Slideshow: { skipIntro?: boolean; bip39Passphrase?: string } | undefined;
 	RestoreFromSeed: undefined;
 	MultipleDevices: undefined;
 	Passphrase: undefined;
@@ -56,11 +54,6 @@ const OnboardingNavigator = (): ReactElement => {
 				<Stack.Screen
 					name="Welcome"
 					component={WelcomeScreen}
-					options={navOptionHandler}
-				/>
-				<Stack.Screen
-					name="Slideshow"
-					component={SlideshowScreen}
 					options={navOptionHandler}
 				/>
 				<Stack.Screen

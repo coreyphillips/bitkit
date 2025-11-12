@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { EItemType, IListData, ItemData } from '../../../components/List';
 import { useAppSelector } from '../../../hooks/redux';
 import type { SettingsScreenProps } from '../../../navigation/types';
-import { lastUsedTagsSelector } from '../../../store/reselect/metadata';
-import { quickpayIntroSeenSelector } from '../../../store/reselect/settings';
 import {
 	selectedCurrencySelector,
 	transactionSpeedSelector,
@@ -18,11 +16,9 @@ const GeneralSettings = ({
 	navigation,
 }: SettingsScreenProps<'GeneralSettings'>): ReactElement => {
 	const { t } = useTranslation('settings');
-	const lastUsedTags = useAppSelector(lastUsedTagsSelector);
 	const selectedTransactionSpeed = useAppSelector(transactionSpeedSelector);
 	const selectedCurrency = useAppSelector(selectedCurrencySelector);
 	const selectedUnit = useAppSelector(unitSelector);
-	const quickpayIntroSeen = useAppSelector(quickpayIntroSeenSelector);
 
 	const listData: IListData[] = useMemo(() => {
 		const transactionSpeeds = {
@@ -58,41 +54,18 @@ const GeneralSettings = ({
 				onPress: (): void => navigation.navigate('TransactionSpeedSettings'),
 			},
 			{
-				title: t('widgets.nav_title'),
-				type: EItemType.button,
-				testID: 'WidgetsSettings',
-				onPress: (): void => navigation.navigate('WidgetSettings'),
-			},
-			{
-				title: t('quickpay.nav_title'),
-				type: EItemType.button,
-				testID: 'QuickpaySettings',
-				onPress: (): void => {
-					if (quickpayIntroSeen) {
-						navigation.navigate('QuickpaySettings');
-					} else {
-						navigation.navigate('QuickpayIntro');
-					}
-				},
-			},
-		];
-
-		if (lastUsedTags.length) {
-			data.push({
 				title: t('general.tags'),
 				type: EItemType.button,
 				testID: 'TagsSettings',
 				onPress: (): void => navigation.navigate('TagsSettings'),
-			});
-		}
+			},
+		];
 
 		return [{ data }];
 	}, [
-		lastUsedTags,
 		selectedCurrency,
 		selectedUnit,
 		selectedTransactionSpeed,
-		quickpayIntroSeen,
 		navigation,
 		t,
 	]);

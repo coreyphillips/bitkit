@@ -4,7 +4,6 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import TOS from '../../assets/tos';
 import SafeAreaInset from '../../components/SafeAreaInset';
-import VerticalShadow from '../../components/VerticalShadow';
 import Button from '../../components/buttons/Button';
 import CheckButton from '../../components/buttons/CheckButton';
 import type { OnboardingStackScreenProps } from '../../navigation/types';
@@ -66,10 +65,6 @@ const TermsOfUse = ({
 
 						<TOS />
 					</ScrollView>
-
-					<View style={styles.shadowContainer}>
-						<VerticalShadow direction="bottom" />
-					</View>
 				</View>
 
 				<View style={styles.checkboxes}>

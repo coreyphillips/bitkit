@@ -16,7 +16,6 @@ import {
 	injectFakeTransaction,
 } from '../../../store/actions/wallet';
 import { getStore, getWalletStore } from '../../../store/helpers';
-import { warningsSelector } from '../../../store/reselect/checks';
 import { settingsSelector } from '../../../store/reselect/settings';
 import {
 	addressTypeSelector,
@@ -24,25 +23,17 @@ import {
 	selectedWalletSelector,
 } from '../../../store/reselect/wallet';
 import { resetActivityState } from '../../../store/slices/activity';
-import { resetBackupState } from '../../../store/slices/backup';
-import { resetBlocktankState } from '../../../store/slices/blocktank';
 import { resetFeesState } from '../../../store/slices/fees';
-import { resetLightningState } from '../../../store/slices/lightning';
-import { resetMetadataState } from '../../../store/slices/metadata';
 import {
 	resetSettingsState,
 	updateSettings,
 } from '../../../store/slices/settings';
-import { resetSlashtagsState } from '../../../store/slices/slashtags';
-import { resetTodosState } from '../../../store/slices/todos';
 import { resetUserState } from '../../../store/slices/user';
 import {
 	resetSelectedWallet,
 	updateWallet,
 } from '../../../store/slices/wallet';
-import { resetWidgetsState } from '../../../store/slices/widgets';
 import { wipeApp } from '../../../store/utils/settings';
-import { zipLogs } from '../../../utils/lightning/logs';
 import { showToast } from '../../../utils/notifications';
 import { refreshWallet } from '../../../utils/wallet';
 import { runChecks } from '../../../utils/wallet/checks';

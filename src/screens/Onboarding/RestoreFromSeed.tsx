@@ -22,7 +22,6 @@ import NavigationHeader from '../../components/NavigationHeader';
 import SafeAreaInset from '../../components/SafeAreaInset';
 import SeedInput from '../../components/SeedInput';
 import SeedInputAccessory from '../../components/SeedInputAccessory';
-import VerticalShadow from '../../components/VerticalShadow';
 import Button from '../../components/buttons/Button';
 import { useAppDispatch } from '../../hooks/redux';
 import { OnboardingStackScreenProps } from '../../navigation/types';
@@ -170,11 +169,7 @@ const RestoreFromSeed = ({
 				color="transparent"
 				contentContainerStyle={styles.content}
 				showsVerticalScrollIndicator={false}
-				bounces={false}
-				stickyHeaderIndices={[0]}>
-				<View style={styles.shadowContainer}>
-					<VerticalShadow />
-				</View>
+				bounces={false}>
 				<View>
 					<View style={styles.title}>
 						<Display>

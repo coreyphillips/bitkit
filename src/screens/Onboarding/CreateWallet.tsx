@@ -4,15 +4,11 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import Dialog from '../../components/Dialog';
 import SafeAreaInset from '../../components/SafeAreaInset';
-import { SlashtagsProvider } from '../../components/SlashtagsProvider';
 import Button from '../../components/buttons/Button';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useProfile, useSlashtags } from '../../hooks/slashtags';
 import { OnboardingStackScreenProps } from '../../navigation/types';
-import { onboardingProfileStepSelector } from '../../store/reselect/slashtags';
 import { requiresRemoteRestoreSelector } from '../../store/reselect/user';
 import { walletExistsSelector } from '../../store/reselect/wallet';
-import { setOnboardingProfileStep } from '../../store/slices/slashtags';
 import { updateUser } from '../../store/slices/user';
 import { View as ThemedView } from '../../styles/components';
 import { BodyM, Display } from '../../styles/text';
@@ -209,31 +205,11 @@ const CreateWallet = ({
 				/>
 
 				<SafeAreaInset type="bottom" minPadding={16} />
-
-				<SlashtagsProvider>
-					<SkipSlashtagsOnboading />
-				</SlashtagsProvider>
 			</View>
 		);
 	}
 
 	return <ThemedView style={styles.root}>{content}</ThemedView>;
-};
-
-// this component is used to skip the slashtags onboarding process if profile is already created
-const SkipSlashtagsOnboading = (): ReactElement => {
-	const dispatch = useAppDispatch();
-	const onboardingStep = useAppSelector(onboardingProfileStepSelector);
-	const { url } = useSlashtags();
-	const { profile } = useProfile(url);
-
-	useEffect(() => {
-		if (onboardingStep !== 'Done' && profile.name) {
-			dispatch(setOnboardingProfileStep('Done'));
-		}
-	}, [profile.name, onboardingStep, dispatch]);
-
-	return <></>;
 };
 
 const styles = StyleSheet.create({

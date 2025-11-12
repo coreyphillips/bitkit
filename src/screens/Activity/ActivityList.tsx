@@ -24,7 +24,6 @@ import useColors from '../../hooks/colors';
 import { useAppSelector } from '../../hooks/redux';
 import { RootNavigationProp } from '../../navigation/types';
 import { activityItemsSelector } from '../../store/reselect/activity';
-import { tagsSelector } from '../../store/reselect/metadata';
 import { IActivityItem } from '../../store/types/activity';
 import { BodyM, Caption13Up } from '../../styles/text';
 import {
@@ -83,16 +82,15 @@ const ActivityList = ({
 	const { t } = useTranslation('wallet');
 	const navigation = useNavigation<RootNavigationProp>();
 	const items = useAppSelector(activityItemsSelector);
-	const tags = useAppSelector(tagsSelector);
 	const [refreshing, setRefreshing] = useState(false);
 
 	const groupedItems = useMemo(() => {
-		// Apply search filter
-		const filterItems = filterActivityItems(items, tags, filter);
+		// Apply search filter (tags not supported in onchain-only wallet)
+		const filterItems = filterActivityItems(items, {}, filter);
 		// Group items by categories: today, yesterday, this month, this year, earlier
 		// and attach to them formattedDate
 		return groupActivityItems(filterItems);
-	}, [filter, items, tags]);
+	}, [filter, items]);
 
 	const renderItem = useCallback(
 		({

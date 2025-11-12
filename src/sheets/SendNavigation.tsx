@@ -41,13 +41,13 @@ export type SendStackParamList = {
 	Address: undefined;
 	AutoRebalance: undefined;
 	CoinSelection: undefined;
-	ErrorScreen: undefined;
+	ErrorScreen: { errorMessage: string };
 	FeeCustom: undefined;
 	FeeRate: undefined;
-	Pending: undefined;
-	PinCheck: undefined;
+	Pending: { txId: string };
+	PinCheck: { onSuccess: () => void };
 	Scanner: undefined;
-	Success: undefined;
+	Success: { type: EActivityType; amount: number; txId: string };
 };
 
 const navigationRef = createNavigationContainerRef<SendStackParamList>();

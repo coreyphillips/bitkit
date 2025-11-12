@@ -17,7 +17,7 @@ const AutoRebalance = ({
 	navigation,
 }: SendScreenProps<'AutoRebalance'>): ReactElement => {
 	const insets = useSafeAreaInsets();
-	const sheetRef = useSheetRef('send');
+	const sheetRef = useSheetRef('sendNavigation');
 
 	const buttonContainer = useMemo(
 		() => ({

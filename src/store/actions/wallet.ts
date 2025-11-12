@@ -51,8 +51,10 @@ import {
 	updateWallet,
 	updateWalletData,
 } from '../slices/wallet';
-import { TGetImpactedAddressesRes } from '../types/checks';
 import { ETransactionSpeed } from '../types/settings';
+
+// Stub type - checks not supported in onchain-only wallet
+type TGetImpactedAddressesRes = { impactedAddresses: IAddress[] };
 import { ICreateWallet, TWalletName } from '../types/wallet';
 import { updateActivityList } from '../utils/activity';
 import { updateOnchainFeeEstimates } from '../utils/fees';

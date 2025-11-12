@@ -26,7 +26,7 @@ const Success = ({ route }: SendScreenProps<'Success'>): ReactElement => {
 	const { t } = useTranslation('wallet');
 	const { type, amount, txId } = route.params;
 	const reducedMotion = useReducedMotion();
-	const sheetRef = useSheetRef('send');
+	const sheetRef = useSheetRef('sendNavigation');
 	const activityItem = useAppSelector((state) => {
 		return activityItemSelector(state, txId);
 	});

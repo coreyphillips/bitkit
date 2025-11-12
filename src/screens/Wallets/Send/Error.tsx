@@ -25,12 +25,12 @@ const imageExclamation = require('../../../assets/illustrations/exclamation-mark
 const ErrorScreen = ({
 	navigation,
 	route,
-}: SendScreenProps<'Error'>): ReactElement => {
+}: SendScreenProps<'ErrorScreen'>): ReactElement => {
 	const { t } = useTranslation('wallet');
 	let { errorMessage } = route.params;
 	const dispatch = useAppDispatch();
 	const transaction = useAppSelector(transactionSelector);
-	const sheetRef = useSheetRef('send');
+	const sheetRef = useSheetRef('sendNavigation');
 	const { lightningInvoice, slashTagsUrl } = transaction;
 
 	const isSlashpayLightning = !!slashTagsUrl && !!lightningInvoice;

@@ -12,7 +12,6 @@ import AboutSettings from '../screens/Settings/About';
 import AddressTypePreference from '../screens/Settings/AddressTypePreference';
 import AdvancedSettings from '../screens/Settings/Advanced';
 import AppStatus from '../screens/Settings/AppStatus';
-import ResetAndRestore from '../screens/Settings/Backup/ResetAndRestore';
 import BitcoinNetworkSelection from '../screens/Settings/Bitcoin/BitcoinNetworkSelection';
 import CoinSelectPreference from '../screens/Settings/CoinSelectPreference';
 import CurrenciesSettings from '../screens/Settings/Currencies';
@@ -63,11 +62,7 @@ export type SettingsStackParamList = {
 	AddressTypePreference: undefined;
 	DevSettings: undefined;
 	// ExportToPhone: undefined;
-	ResetAndRestore: undefined;
 	BitcoinNetworkSelection: undefined;
-	TagsSettings: undefined;
-	AddressViewer: undefined;
-	FeeSettings: undefined;
 };
 
 const Stack = createNativeStackNavigator<SettingsStackParamList>();
@@ -113,7 +108,6 @@ const SettingsNavigator = (): ReactElement => {
 			/>
 			<Stack.Screen name="DevSettings" component={DevSettings} />
 			{/* <Stack.Screen name="ExportToPhone" component={ExportToPhone} /> */}
-			<Stack.Screen name="ResetAndRestore" component={ResetAndRestore} />
 			<Stack.Screen
 				name="BitcoinNetworkSelection"
 				component={BitcoinNetworkSelection}

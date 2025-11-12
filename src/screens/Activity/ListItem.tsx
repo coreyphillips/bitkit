@@ -6,12 +6,24 @@ import { BodyS } from '../../styles/text';
 
 export const ListItem = ({
 	item,
+	testID,
+	onPress,
 }: {
 	item: IActivityItem;
+	testID?: string;
+	onPress?: () => void;
 }): ReactElement => {
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} testID={testID}>
 			<BodyS>{item.id}</BodyS>
+		</View>
+	);
+};
+
+export const EmptyItem = (): ReactElement => {
+	return (
+		<View style={styles.container}>
+			<BodyS>No transactions</BodyS>
 		</View>
 	);
 };

@@ -49,7 +49,7 @@ export const showNewOnchainTxPrompt = ({
 		activityType: EActivityType.onchain,
 		value,
 	});
-	closeSheet('receive');
+	// Receive sheet not supported in onchain-only wallet
 };
 
 export const checkForAppUpdate = async (): Promise<void> => {

@@ -227,7 +227,7 @@ const _Item = memo((item: ItemData): ReactElement => {
 
 	if (type === EItemType.draggable) {
 		// Draggable list not supported in simplified wallet
-		return null;
+		return <></>;
 	}
 
 	if (type === EItemType.button) {

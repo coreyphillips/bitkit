@@ -1,9 +1,35 @@
+// Stub file - storage functionality removed for onchain-only wallet
+
 import { MMKV } from 'react-native-mmkv';
-import { receivedTxIds } from './received-tx-cache';
-import { reduxStorage } from './redux-storage';
-import { WebRelayCache } from './webrelay-cache';
-import { widgetsCache } from './widgets-cache';
 
 export const storage = new MMKV();
 
-export { reduxStorage, receivedTxIds, WebRelayCache, widgetsCache };
+export const walletCache = {
+	get: () => undefined,
+	set: () => {},
+	delete: () => {},
+};
+
+export const walletStateCache = {
+	get: () => undefined,
+	set: () => {},
+	delete: () => {},
+};
+
+export const widgetsCache = {
+	get: () => undefined,
+	set: () => {},
+	delete: () => {},
+};
+
+export const reduxStorage = {
+	setItem: (key: string, value: string) => storage.set(key, value),
+	getItem: (key: string) => storage.getString(key) ?? null,
+	removeItem: (key: string) => storage.delete(key),
+};
+
+export const receivedTxIds = {
+	get: () => [],
+	set: () => {},
+	add: () => {},
+};

@@ -1,7 +1,6 @@
 import { Result, ok } from '@synonymdev/result';
 
 import { onChainTransactionToActivityItem } from '../../utils/activity';
-import { formatBoostedActivityItems } from '../../utils/boost';
 import { getCurrentWallet } from '../../utils/wallet';
 import { dispatch } from '../helpers';
 import { updateActivityItems } from '../slices/activity';
@@ -37,11 +36,8 @@ export const updateOnChainActivityList = async (): Promise<Result<string>> => {
 	});
 	const activityItems = await Promise.all(promises);
 
-	const boostFormattedItems = await formatBoostedActivityItems({
-		items: activityItems,
-		boostedTransactions,
-	});
-	dispatch(updateActivityItems(boostFormattedItems));
+	// Boost not supported in onchain-only wallet
+	dispatch(updateActivityItems(activityItems));
 
 	return ok('On chain transaction activity items updated');
 };

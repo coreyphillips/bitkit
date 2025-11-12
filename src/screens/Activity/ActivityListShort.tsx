@@ -24,7 +24,7 @@ const MAX_ACTIVITY_ITEMS = 3;
 const ActivityListShort = (): ReactElement => {
 	const { t } = useTranslation('wallet');
 	const navigation = useNavigation<RootNavigationProp>();
-	const sheetRef = useSheetRef('receive');
+	// Receive sheet not supported in onchain-only wallet
 	const items = useAppSelector(activityItemsSelector);
 
 	const groupedItems = useMemo(() => {

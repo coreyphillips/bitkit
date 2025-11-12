@@ -17,7 +17,7 @@ import { BodyM } from '../../../styles/text';
 
 const Pending = ({ route }: SendScreenProps<'Pending'>): ReactElement => {
 	const { t } = useTranslation('wallet');
-	const sheetRef = useSheetRef('send');
+	const sheetRef = useSheetRef('sendNavigation');
 	const { txId } = route.params;
 
 	const activityItem = useAppSelector((state) => {

@@ -51,7 +51,8 @@ const UtxoRow = ({
 }): ReactElement => {
 	const displayValue = useDisplayValues(item.value);
 	const { white10 } = useColors();
-	const tags = useAppSelector((store) => store.metadata.tags[item.tx_hash]);
+	// Tags not supported in onchain-only wallet
+	const tags = undefined;
 
 	return (
 		<View style={[styles.coinRoot, { borderBottomColor: white10 }]}>

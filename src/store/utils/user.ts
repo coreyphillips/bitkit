@@ -1,9 +1,7 @@
-import { isGeoBlocked } from '../../utils/blocktank';
-import { dispatch } from '../helpers';
-import { updateUser } from '../slices/user';
+// Stub file - user utilities simplified for onchain-only wallet
 
-export const setGeoBlock = async (): Promise<boolean> => {
-	const isBlocked = await isGeoBlocked();
-	dispatch(updateUser({ isGeoBlocked: isBlocked }));
-	return isBlocked;
+import { Result, ok } from '@synonymdev/result';
+
+export const setupOnDeviceStorage = async (): Promise<Result<string>> => {
+	return ok('Device storage setup complete');
 };

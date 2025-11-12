@@ -50,7 +50,8 @@ const ActivityListShort = (): ReactElement => {
 					item={item}
 					testID={`ActivityShort-${index}`}
 					onPress={(): void => {
-						navigation.navigate('ActivityDetail', { id: item.id });
+						// TODO: Navigate to activity detail
+						// navigation.navigate('ActivityDetail', { id: item.id });
 					}}
 				/>
 			);

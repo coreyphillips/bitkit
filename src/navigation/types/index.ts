@@ -8,12 +8,8 @@ import {
 } from '@react-navigation/native-stack';
 
 import type { RecoveryStackParamList } from '../../screens/Recovery/RecoveryNavigator';
-import type { BackupStackParamList } from '../../sheets/BackupNavigation';
-import type { GiftStackParamList } from '../../sheets/GiftNavigation';
 import type { PinStackParamList } from '../../sheets/PINNavigation';
-import type { ReceiveStackParamList } from '../../sheets/ReceiveNavigation';
 import type { SendStackParamList } from '../../sheets/SendNavigation';
-import type { IActivityItem } from '../../store/types/activity';
 import type { OnboardingStackParamList } from '../OnboardingNavigator';
 import type { SettingsStackParamList } from '../SettingsNavigator';
 import type { WalletStackParamList } from '../WalletNavigator';
@@ -57,17 +53,8 @@ export type SettingsScreenProps<T extends keyof SettingsStackParamList> =
 	>;
 
 // BottomSheet Navigators
-export type BackupScreenProps<T extends keyof BackupStackParamList> =
-	NativeStackScreenProps<BackupStackParamList, T>;
-
 export type PinScreenProps<T extends keyof PinStackParamList> =
 	NativeStackScreenProps<PinStackParamList, T>;
 
-export type ReceiveScreenProps<T extends keyof ReceiveStackParamList> =
-	NativeStackScreenProps<ReceiveStackParamList, T>;
-
 export type SendScreenProps<T extends keyof SendStackParamList> =
 	NativeStackScreenProps<SendStackParamList, T>;
-
-export type GiftScreenProps<T extends keyof GiftStackParamList> =
-	NativeStackScreenProps<GiftStackParamList, T>;

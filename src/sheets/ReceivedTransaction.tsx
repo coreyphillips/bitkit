@@ -38,7 +38,8 @@ const SheetContent = ({
 
 	const onAmountPress = (): void => {
 		sheetRef.current?.close();
-		rootNavigation.navigate('ActivityDetail', { id });
+		// TODO: Navigate to activity detail
+		// rootNavigation.navigate('ActivityDetail', { id });
 	};
 
 	return (

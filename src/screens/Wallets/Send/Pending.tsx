@@ -27,10 +27,11 @@ const Pending = ({ route }: SendScreenProps<'Pending'>): ReactElement => {
 	const navigateToTxDetails = (): void => {
 		if (activityItem) {
 			sheetRef.current?.close();
-			rootNavigation.navigate('ActivityDetail', {
-				id: activityItem.id,
-				extended: false,
-			});
+			// TODO: Navigate to activity detail
+			// rootNavigation.navigate('ActivityDetail', {
+			// 	id: activityItem.id,
+			// 	extended: false,
+			// });
 		}
 	};
 

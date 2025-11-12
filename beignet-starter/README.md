@@ -33,25 +33,31 @@ A React Native starter app with [Beignet](https://github.com/synonymdev/beignet)
 
 ## Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd beignet-starter
-   ```
+⚠️ **Important**: This template contains the source code but requires you to initialize the iOS/Android native projects.
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+### Quick Start (Automated)
 
-3. **Install iOS dependencies** (macOS only)
-   ```bash
-   cd ios
-   pod install
-   cd ..
-   ```
+Run the setup script:
+```bash
+./setup.sh
+```
+
+This will:
+- Install npm dependencies
+- Generate iOS and Android native project files
+- Install CocoaPods dependencies (iOS)
+- Configure the projects for BeignetStarter
+
+### Manual Setup
+
+See [INSTALL.md](./INSTALL.md) for detailed manual installation instructions.
+
+### Why No Native Files?
+
+The iOS and Android native projects contain thousands of auto-generated files. By generating them fresh, you get:
+- ✅ Latest React Native template
+- ✅ Clean, unmodified native code
+- ✅ Smaller repository size
 
 ## Running the App
 

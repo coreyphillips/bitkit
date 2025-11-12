@@ -8,7 +8,6 @@ import {
 	ETransactionSpeed,
 	ICustomElectrumPeer,
 	TCustomElectrumPeers,
-	TReceiveOption,
 	TTheme,
 } from '../types/settings';
 import { EConversionUnit, EDenomination, EUnit } from '../types/wallet';
@@ -43,15 +42,6 @@ export const hideBalanceOnOpenSelector = (state: RootState): boolean => {
 export const enableDevOptionsSelector = (state: RootState): boolean => {
 	return state.settings.enableDevOptions;
 };
-export const enableOfflinePaymentsSelector = (state: RootState): boolean => {
-	return state.settings.enableOfflinePayments;
-};
-export const enableQuickpaySelector = (state: RootState): boolean => {
-	return state.settings.enableQuickpay;
-};
-export const quickpayAmountSelector = (state: RootState): number => {
-	return state.settings.quickpayAmount;
-};
 export const pinSelector = (state: RootState): boolean => {
 	return state.settings.pin;
 };
@@ -66,9 +56,6 @@ export const coinSelectPreferenceSelector = (
 ): ECoinSelectPreference => {
 	return state.settings.coinSelectPreference;
 };
-export const rapidGossipSyncUrlSelector = (state: RootState): string => {
-	return state.settings.rapidGossipSyncUrl;
-};
 export const transactionSpeedSelector = (
 	state: RootState,
 ): ETransactionSpeed => {
@@ -76,17 +63,6 @@ export const transactionSpeedSelector = (
 };
 export const customFeeRateSelector = (state: RootState): number => {
 	return state.settings.customFeeRate;
-};
-export const showWidgetsSelector = (state: RootState): boolean => {
-	return state.settings.showWidgets;
-};
-export const showWidgetTitlesSelector = (state: RootState): boolean => {
-	return state.settings.showWidgetTitles;
-};
-export const receivePreferenceSelector = (
-	state: RootState,
-): TReceiveOption[] => {
-	return state.settings.receivePreference;
 };
 export const pinForPaymentsSelector = (state: RootState): boolean => {
 	return state.settings.pinForPayments;
@@ -114,24 +90,6 @@ export const nextUnitSelector = (state: RootState): EUnit => {
 };
 export const denominationSelector = (state: RootState): EDenomination => {
 	return state.settings.denomination;
-};
-export const webRelaySelector = (state: RootState): string => {
-	return state.settings.webRelay;
-};
-export const quickpayIntroSeenSelector = (state: RootState): boolean => {
-	return state.settings.quickpayIntroSeen;
-};
-export const shopIntroSeenSelector = (state: RootState): boolean => {
-	return state.settings.shopIntroSeen;
-};
-export const transferIntroSeenSelector = (state: RootState): boolean => {
-	return state.settings.transferIntroSeen;
-};
-export const spendingIntroSeenSelector = (state: RootState): boolean => {
-	return state.settings.spendingIntroSeen;
-};
-export const savingsIntroSeenSelector = (state: RootState): boolean => {
-	return state.settings.savingsIntroSeen;
 };
 
 /**

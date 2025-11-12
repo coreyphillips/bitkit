@@ -2,7 +2,6 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import React, { memo, ReactElement } from 'react';
 
 import InactivityTracker from './components/InactivityTracker';
-import { SlashtagsProvider } from './components/SlashtagsProvider';
 import { useAppStateHandler } from './hooks/useAppStateHandler';
 import { useNetworkConnectivity } from './hooks/useNetworkConnectivity';
 import { useWalletStartup } from './hooks/useWalletStartup';
@@ -16,17 +15,15 @@ const AppOnboarded = (): ReactElement => {
 	useNetworkConnectivity();
 
 	return (
-		<SlashtagsProvider>
-			<SheetRefsProvider>
-				<InactivityTracker>
-					<RootNavigationContainer>
-						<BottomSheetModalProvider>
-							<DrawerNavigator />
-						</BottomSheetModalProvider>
-					</RootNavigationContainer>
-				</InactivityTracker>
-			</SheetRefsProvider>
-		</SlashtagsProvider>
+		<SheetRefsProvider>
+			<InactivityTracker>
+				<RootNavigationContainer>
+					<BottomSheetModalProvider>
+						<DrawerNavigator />
+					</BottomSheetModalProvider>
+				</RootNavigationContainer>
+			</InactivityTracker>
+		</SheetRefsProvider>
 	);
 };
 

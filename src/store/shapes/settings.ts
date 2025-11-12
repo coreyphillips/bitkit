@@ -76,17 +76,6 @@ export const defaultElectrumPeer: Record<EAvailableNetwork, TServer[]> = {
 	],
 };
 
-const defaultReceivePreference = [
-	{
-		key: 'lightning',
-		title: 'Lightning (Bitkit)',
-	},
-	{
-		key: 'onchain',
-		title: 'On-chain (Bitkit)',
-	},
-];
-
 export const initialSettingsState: TSettings = {
 	enableAutoReadClipboard: false,
 	enableSendAmountWarning: false,
@@ -103,29 +92,14 @@ export const initialSettingsState: TSettings = {
 	selectedCurrency: getDefaultCurrency(),
 	selectedLanguage: 'english',
 	customElectrumPeers: defaultElectrumPeer,
-	rapidGossipSyncUrl: 'https://rgs.blocktank.to/snapshot/',
 	coinSelectAuto: true,
 	coinSelectPreference: ECoinSelectPreference.small,
-	receivePreference: defaultReceivePreference,
 	enableDevOptions: __DEV__,
-	enableOfflinePayments: false,
-	enableQuickpay: false,
-	quickpayAmount: 5,
-	showWidgets: true,
-	showWidgetTitles: false,
 	transactionSpeed: ETransactionSpeed.normal,
 	customFeeRate: 0,
 	hideBalance: false,
 	hideBalanceOnOpen: false,
 	hideOnboardingMessage: false,
-	treasureChests: [],
-	orangeTickets: [],
-	webRelay: __WEB_RELAY__,
-	quickpayIntroSeen: false,
-	shopIntroSeen: false,
-	transferIntroSeen: false,
-	spendingIntroSeen: false,
-	savingsIntroSeen: false,
 };
 
 export const getDefaultSettingsShape = (): TSettings => {

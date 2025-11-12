@@ -12,24 +12,18 @@ import { useAppSelector } from '../../hooks/redux';
 import { useBalance } from '../../hooks/wallet';
 import { WalletScreenProps } from '../../navigation/types';
 import { activityItemsSelector } from '../../store/reselect/activity';
-import { spendingIntroSeenSelector } from '../../store/reselect/settings';
-import { isGeoBlockedSelector } from '../../store/reselect/user';
 import { EActivityType } from '../../store/types/activity';
 import { View as ThemedView } from '../../styles/components';
-import { BitcoinCircleIcon, TransferIcon } from '../../styles/icons';
+import { BitcoinCircleIcon } from '../../styles/icons';
 import { CaptionB, Display } from '../../styles/text';
 import ActivityList from './ActivityList';
 
 const imageSrc = require('../../assets/illustrations/piggybank.png');
 
-const ActivitySavings = ({
-	navigation,
-}: WalletScreenProps<'ActivitySavings'>): ReactElement => {
+const ActivitySavings = ({}: WalletScreenProps<'ActivitySavings'>): ReactElement => {
 	const { t } = useTranslation('wallet');
-	const { onchainBalance, balanceInTransferToSavings } = useBalance();
+	const { onchainBalance } = useBalance();
 	const items = useAppSelector(activityItemsSelector);
-	const isGeoBlocked = useAppSelector(isGeoBlockedSelector);
-	const spendingIntroSeen = useAppSelector(spendingIntroSeenSelector);
 
 	const savingsItems = useMemo(() => {
 		return items.filter((item) => {
@@ -40,21 +34,11 @@ const ActivitySavings = ({
 	const filter = useMemo(() => {
 		return {
 			types: [EActivityType.onchain],
-			includeTransfers: true,
+			includeTransfers: false,
 		};
 	}, []);
 
 	const showOnboarding = onchainBalance === 0 && savingsItems.length === 0;
-
-	const onTransfer = (): void => {
-		if (spendingIntroSeen) {
-			navigation.navigate('TransferRoot', { screen: 'SpendingAmount' });
-		} else {
-			navigation.navigate('TransferRoot', { screen: 'SpendingIntro' });
-		}
-	};
-
-	const canTransfer = !!onchainBalance && !isGeoBlocked;
 
 	return (
 		<ThemedView style={styles.root}>
@@ -72,22 +56,6 @@ const ActivitySavings = ({
 			<View style={styles.content}>
 				<ActivityHeader balance={onchainBalance} />
 
-				{balanceInTransferToSavings !== 0 && (
-					<View style={styles.transfer}>
-						<View style={styles.transferText}>
-							<TransferIcon style={styles.transferIcon} color="white50" />
-							<CaptionB color="white50">
-								{t('details_transfer_subtitle')}
-							</CaptionB>
-						</View>
-						<Money
-							sats={balanceInTransferToSavings}
-							size="captionB"
-							color="white50"
-						/>
-					</View>
-				)}
-
 				<View style={styles.divider} />
 
 				{showOnboarding ? (
@@ -101,22 +69,9 @@ const ActivitySavings = ({
 						}
 					/>
 				) : (
-					<>
-						{canTransfer && (
-							<Button
-								style={styles.button}
-								text="Transfer To Spending"
-								variant="secondary"
-								size="large"
-								icon={<TransferIcon height={16} width={16} />}
-								testID="TransferToSpending"
-								onPress={onTransfer}
-							/>
-						)}
-						<View style={styles.activity}>
-							<ActivityList filter={filter} showFooterButton={true} />
-						</View>
-					</>
+					<View style={styles.activity}>
+						<ActivityList filter={filter} showFooterButton={true} />
+					</View>
 				)}
 			</View>
 		</ThemedView>

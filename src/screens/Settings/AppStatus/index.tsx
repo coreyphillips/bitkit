@@ -12,15 +12,10 @@ import {
 
 import { useAppSelector } from '../../../hooks/redux';
 import { SettingsScreenProps } from '../../../navigation/types';
-import { backupSelector } from '../../../store/reselect/backup';
 import {
-	backupStatusSelector,
-	channelsStatusSelector,
 	electrumStatusSelector,
 	internetStatusSelector,
-	nodeStatusSelector,
 } from '../../../store/reselect/ui';
-import { EBackupCategory } from '../../../store/types/backup';
 import { THealthState } from '../../../store/types/ui';
 import colors, { IColors } from '../../../styles/colors';
 import { ScrollView, View as ThemedView } from '../../../styles/components';
@@ -103,32 +98,6 @@ const AppStatus = ({
 
 	const internetState = useAppSelector(internetStatusSelector);
 	const electrumState = useAppSelector(electrumStatusSelector);
-	const nodeState = useAppSelector(nodeStatusSelector);
-	const channelsState = useAppSelector(channelsStatusSelector);
-	const backupState = useAppSelector(backupStatusSelector);
-	const backup = useAppSelector(backupSelector);
-
-	const backupSubtitle = useMemo(() => {
-		if (backupState === 'error') {
-			return t('status.backup.error');
-		}
-		const syncTimes = Object.values(EBackupCategory).map((key) => {
-			return backup[key].synced;
-		});
-		const max = Math.max(...syncTimes);
-		return tTime('dateTime', {
-			v: new Date(max),
-			formatParams: {
-				v: {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric',
-					hour: 'numeric',
-					minute: 'numeric',
-				},
-			},
-		});
-	}, [backup, backupState, t, tTime]);
 
 	const items: IStatusItemProps[] = [
 		{
@@ -149,25 +118,6 @@ const AppStatus = ({
 			Icon: BitcoinSlantedIcon,
 			state: electrumState,
 			onPress: () => navigation.navigate('ElectrumConfig'),
-		},
-		{
-			id: 'lightning_node',
-			Icon: BroadcastIcon,
-			state: nodeState,
-			onPress: () => navigation.navigate('LightningNodeInfo'),
-		},
-		{
-			id: 'lightning_connection',
-			Icon: LightningHollowIcon,
-			state: channelsState,
-			onPress: () => navigation.navigate('Channels'),
-		},
-		{
-			id: 'backup',
-			Icon: CloudCheckIcon,
-			state: backupState,
-			subtitle: backupSubtitle,
-			onPress: () => navigation.navigate('BackupSettings'),
 		},
 	];
 

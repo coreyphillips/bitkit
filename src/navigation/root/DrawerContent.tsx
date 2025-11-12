@@ -8,18 +8,12 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import AppStatus from '../../components/AppStatus';
-import { useAppSelector } from '../../hooks/redux';
-import { shopIntroSeenSelector } from '../../store/reselect/settings';
 import colors from '../../styles/colors';
 import { View as ThemedView } from '../../styles/components';
 import {
 	ActivityIcon,
 	CoinsIcon,
 	SettingsIcon,
-	StackIcon,
-	StorefrontIcon,
-	UserSquareIcon,
-	UsersIcon,
 } from '../../styles/icons';
 import { DrawerText } from '../../styles/text';
 import { DrawerStackNavigationProp } from './DrawerNavigator';
@@ -50,7 +44,6 @@ const DrawerItem = ({
 const DrawerContent = (props: DrawerContentComponentProps): ReactElement => {
 	const { t } = useTranslation('wallet');
 	const navigation = useNavigation<DrawerStackNavigationProp>();
-	const shopIntroSeen = useAppSelector(shopIntroSeenSelector);
 
 	return (
 		<ThemedView style={[styles.drawer]} color="brand">
@@ -69,37 +62,7 @@ const DrawerContent = (props: DrawerContentComponentProps): ReactElement => {
 					label={t('drawer.activity')}
 					testID="DrawerActivity"
 					onPress={() => {
-						navigation.navigate('Wallet', { screen: 'ActivityFiltered' });
-					}}
-				/>
-				<DrawerItem
-					icon={<UsersIcon color="white" width={24} height={24} />}
-					label={t('drawer.contacts')}
-					testID="DrawerContacts"
-					onPress={() => navigation.navigate('Contacts')}
-				/>
-				<DrawerItem
-					icon={<UserSquareIcon color="white" width={24} height={24} />}
-					label={t('drawer.profile')}
-					testID="DrawerProfile"
-					onPress={() => navigation.navigate('Profile')}
-				/>
-				<DrawerItem
-					icon={<StackIcon color="white" width={24} height={24} />}
-					label={t('drawer.widgets')}
-					testID="DrawerWidgets"
-					onPress={() => navigation.navigate('WidgetsSuggestions')}
-				/>
-				<DrawerItem
-					icon={<StorefrontIcon color="white" width={24} height={24} />}
-					label={t('drawer.shop')}
-					testID="DrawerShop"
-					onPress={() => {
-						if (shopIntroSeen) {
-							navigation.navigate('ShopDiscover');
-						} else {
-							navigation.navigate('ShopIntro');
-						}
+						navigation.navigate('Wallet', { screen: 'ActivitySavings' });
 					}}
 				/>
 				<DrawerItem

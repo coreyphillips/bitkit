@@ -52,7 +52,6 @@ export type SettingsStackParamList = {
 	ChangePin2: { pin: string } | undefined;
 	PinChanged: undefined;
 	DisablePin: undefined;
-	BackupSettings: undefined;
 	AdvancedSettings: undefined;
 	AboutSettings: undefined;
 	SupportSettings: undefined;
@@ -66,26 +65,15 @@ export type SettingsStackParamList = {
 	CustomFee: undefined;
 	ElectrumConfig: undefined;
 	GapLimit: undefined;
-	RGSServer: undefined;
 	CoinSelectPreference: undefined;
-	PaymentPreference: undefined;
 	AddressTypePreference: undefined;
 	DevSettings: undefined;
-	LdkDebug: undefined;
 	// ExportToPhone: undefined;
 	ResetAndRestore: undefined;
 	BitcoinNetworkSelection: undefined;
-	LightningNodeInfo: undefined;
-	Channels: { showClosed: boolean } | undefined;
-	ChannelDetails: { channel: TChannel };
-	CloseConnection: { channelId: string };
 	TagsSettings: undefined;
-	WidgetSettings: undefined;
-	QuickpayIntro: undefined;
-	QuickpaySettings: undefined;
 	AddressViewer: undefined;
 	FeeSettings: undefined;
-	WebRelay: undefined;
 };
 
 const Stack = createNativeStackNavigator<SettingsStackParamList>();
@@ -108,7 +96,6 @@ const SettingsNavigator = (): ReactElement => {
 			<Stack.Screen name="ChangePin2" component={ChangePin2} />
 			<Stack.Screen name="PinChanged" component={PinChanged} />
 			<Stack.Screen name="DisablePin" component={DisablePin} />
-			<Stack.Screen name="BackupSettings" component={BackupSettings} />
 			<Stack.Screen name="AdvancedSettings" component={AdvancedSettings} />
 			<Stack.Screen name="AboutSettings" component={AboutSettings} />
 			<Stack.Screen name="SupportSettings" component={SupportSettings} />
@@ -123,23 +110,17 @@ const SettingsNavigator = (): ReactElement => {
 				component={TransactionSpeedSettings}
 			/>
 			<Stack.Screen name="CustomFee" component={CustomFee} />
-			<Stack.Screen name="WidgetSettings" component={WidgetSettings} />
-			<Stack.Screen name="QuickpayIntro" component={QuickpayIntro} />
-			<Stack.Screen name="QuickpaySettings" component={QuickpaySettings} />
 			<Stack.Screen name="ElectrumConfig" component={ElectrumConfig} />
 			<Stack.Screen name="GapLimit" component={GapLimit} />
-			<Stack.Screen name="RGSServer" component={RGSServer} />
 			<Stack.Screen
 				name="CoinSelectPreference"
 				component={CoinSelectPreference}
 			/>
-			<Stack.Screen name="PaymentPreference" component={PaymentPreference} />
 			<Stack.Screen
 				name="AddressTypePreference"
 				component={AddressTypePreference}
 			/>
 			<Stack.Screen name="DevSettings" component={DevSettings} />
-			<Stack.Screen name="LdkDebug" component={LdkDebug} />
 			<Stack.Screen name="AddressViewer" component={AddressViewer} />
 			{/* <Stack.Screen name="ExportToPhone" component={ExportToPhone} /> */}
 			<Stack.Screen name="ResetAndRestore" component={ResetAndRestore} />
@@ -147,13 +128,8 @@ const SettingsNavigator = (): ReactElement => {
 				name="BitcoinNetworkSelection"
 				component={BitcoinNetworkSelection}
 			/>
-			<Stack.Screen name="LightningNodeInfo" component={LightningNodeInfo} />
-			<Stack.Screen name="Channels" component={Channels} />
-			<Stack.Screen name="ChannelDetails" component={ChannelDetails} />
-			<Stack.Screen name="CloseConnection" component={CloseConnection} />
 			<Stack.Screen name="TagsSettings" component={TagsSettings} />
 			<Stack.Screen name="FeeSettings" component={FeeSettings} />
-			<Stack.Screen name="WebRelay" component={WebRelay} />
 		</Stack.Navigator>
 	);
 };

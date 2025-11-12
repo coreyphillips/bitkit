@@ -64,7 +64,7 @@ const ActivityListShort = (): ReactElement => {
 	}, []);
 
 	const navigateToActivityFiltered = useCallback((): void => {
-		navigation.navigate('Wallet', { screen: 'ActivityFiltered' });
+		navigation.navigate('Wallet', { screen: 'ActivitySavings' });
 	}, [navigation]);
 
 	return (

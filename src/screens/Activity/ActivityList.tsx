@@ -40,7 +40,7 @@ const ListFooter = ({ showButton }: { showButton?: boolean }): ReactElement => {
 	const navigation = useNavigation<RootNavigationProp>();
 
 	const onPress = (): void => {
-		navigation.navigate('Wallet', { screen: 'ActivityFiltered' });
+		navigation.navigate('Wallet', { screen: 'ActivitySavings' });
 	};
 
 	if (showButton) {

@@ -11,7 +11,6 @@ import {
 	selectedNetworkSelector,
 } from '../../../store/reselect/wallet';
 import { addressTypes } from '../../../store/shapes/wallet';
-import { resetHiddenTodos } from '../../../store/slices/todos';
 import { networkLabels } from '../../../utils/networks';
 import { rescanAddresses } from '../../../utils/wallet';
 import SettingsView from '../SettingsView';
@@ -42,11 +41,6 @@ const AdvancedSettings = ({
 				onPress: (): void => navigation.navigate('CoinSelectPreference'),
 			},
 			{
-				title: t('adv.payment_preference'),
-				type: EItemType.button,
-				onPress: (): void => navigation.navigate('PaymentPreference'),
-			},
-			{
 				title: t('adv.gap_limit'),
 				type: EItemType.button,
 				onPress: (): void => navigation.navigate('GapLimit'),
@@ -57,34 +51,10 @@ const AdvancedSettings = ({
 
 		const networks: ItemData[] = [
 			{
-				title: t('adv.lightning_connections'),
-				type: EItemType.button,
-				onPress: (): void => navigation.navigate('Channels'),
-				testID: 'Channels',
-			},
-			{
-				title: t('adv.lightning_node'),
-				type: EItemType.button,
-				onPress: (): void => navigation.navigate('LightningNodeInfo'),
-				testID: 'LightningNodeInfo',
-			},
-			{
 				title: t('adv.electrum_server'),
 				type: EItemType.button,
 				onPress: (): void => navigation.navigate('ElectrumConfig'),
 				testID: 'ElectrumConfig',
-			},
-			{
-				title: t('adv.rgs_server'),
-				type: EItemType.button,
-				onPress: (): void => navigation.navigate('RGSServer'),
-				testID: 'RGSServer',
-			},
-			{
-				title: t('adv.web_relay'),
-				type: EItemType.button,
-				onPress: (): void => navigation.navigate('WebRelay'),
-				testID: 'WebRelay',
 			},
 			{
 				title: t('adv.bitcoin_network'),
@@ -158,7 +128,6 @@ const AdvancedSettings = ({
 				confirmText={t('adv.reset_confirm')}
 				onCancel={(): void => setShowDialog(false)}
 				onConfirm={(): void => {
-					dispatch(resetHiddenTodos());
 					setShowDialog(false);
 					navigation.popTo('Wallet', { screen: 'Home' });
 				}}

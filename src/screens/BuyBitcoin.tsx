@@ -2,8 +2,6 @@ import React, { ReactElement } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import OnboardingScreen from '../components/OnboardingScreen';
-import { useAppDispatch } from '../hooks/redux';
-import { hideTodo } from '../store/slices/todos';
 import { Display } from '../styles/text';
 import { openURL } from '../utils/helpers';
 
@@ -11,7 +9,6 @@ const imageSrc = require('../assets/illustrations/bitcoin-emboss.png');
 
 const BuyBitcoin = (): ReactElement => {
 	const { t } = useTranslation('other');
-	const dispatch = useAppDispatch();
 
 	return (
 		<OnboardingScreen
@@ -28,7 +25,6 @@ const BuyBitcoin = (): ReactElement => {
 			buttonText={t('buy_button')}
 			testID="BuyBitcoin"
 			onButtonPress={(): void => {
-				dispatch(hideTodo('buyBitcoin'));
 				openURL('https://bitcoin.org/en/exchanges');
 			}}
 		/>

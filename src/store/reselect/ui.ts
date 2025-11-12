@@ -1,11 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '..';
-import { TBackupItem } from '../types/backup';
-import { EBackupCategory } from '../types/backup';
 import { THealthState, TProfileLink, TSendTransaction } from '../types/ui';
-import { backupSelector } from './backup';
-import { blocktankPaidOrdersFullSelector } from './blocktank';
-import { openChannelsSelector, pendingChannelsSelector } from './lightning';
 
 export const profileLinkSelector = (state: RootState): TProfileLink => {
 	return state.ui.profileLink;
@@ -68,50 +63,19 @@ export const electrumStatusSelector = (state: RootState): THealthState => {
 };
 
 export const nodeStatusSelector = (state: RootState): THealthState => {
-	const { isOnline, isLDKReady } = state.ui;
-	return isOnline && isLDKReady ? 'ready' : 'error';
-};
-
-export const channelsStatusSelector = (state: RootState): THealthState => {
-	const { isOnline } = state.ui;
-	const openChannels = openChannelsSelector(state);
-	const pendingChannels = pendingChannelsSelector(state);
-	const paidOrders = blocktankPaidOrdersFullSelector(state);
-
-	if (!isOnline) {
-		return 'error';
-	}
-	if (openChannels.length > 0) {
-		return 'ready';
-	}
-	if (
-		pendingChannels.length > 0 ||
-		Object.keys(paidOrders.created).length > 0
-	) {
-		return 'pending';
-	}
+	// Lightning not supported in onchain-only wallet
 	return 'error';
 };
 
-export const backupStatusSelector = createSelector(
-	[backupSelector],
-	(backup): THealthState => {
-		const now = new Date().getTime();
-		const FAILED_BACKUP_CHECK_TIME = 300000; // 5 minutes in milliseconds
+export const channelsStatusSelector = (state: RootState): THealthState => {
+	// Lightning not supported in onchain-only wallet
+	return 'error';
+};
 
-		const isSyncOk = (b: TBackupItem): boolean => {
-			return (
-				b.synced > b.required || now - b.required < FAILED_BACKUP_CHECK_TIME
-			);
-		};
-
-		const isBackupSyncOk = Object.values(EBackupCategory).every((key) => {
-			return isSyncOk(backup[key]);
-		});
-
-		return isBackupSyncOk ? 'ready' : 'error';
-	},
-);
+export const backupStatusSelector = (): THealthState => {
+	// Backup not supported in onchain-only wallet
+	return 'error';
+};
 
 /**
  * Returns a combined status of all app components.

@@ -20,7 +20,6 @@ import { __E2E__ } from '../../constants/env';
 import { useBottomSheetBackPress } from '../../hooks/bottomSheet';
 import { useRenderCount } from '../../hooks/helpers';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import ActivityDetail from '../../screens/Activity/ActivityDetail';
 import BuyBitcoin from '../../screens/BuyBitcoin';
 import ScannerScreen from '../../screens/Scanner/MainScanner';
 import BottomSheetsLazy from '../../sheets/BottomSheetsLazy';
@@ -126,7 +125,6 @@ const RootNavigator = (): ReactElement => {
 		<>
 			<Stack.Navigator screenOptions={screenOptions}>
 				<Stack.Screen name="Wallet" component={WalletNavigator} />
-				<Stack.Screen name="ActivityDetail" component={ActivityDetail} />
 				<Stack.Screen name="Scanner" component={ScannerScreen} />
 				<Stack.Screen name="Settings" component={SettingsNavigator} />
 				<Stack.Screen name="BuyBitcoin" component={BuyBitcoin} />

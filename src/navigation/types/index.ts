@@ -26,7 +26,6 @@ export type RootNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export type RootStackParamList = {
 	Wallet: NavigatorScreenParams<WalletStackParamList> | undefined;
 	Biometrics: undefined;
-	ActivityDetail: { id: IActivityItem['id']; extended?: boolean };
 	AppUpdate: undefined;
 	Scanner: { onScan: (data: string) => void } | undefined;
 	Settings: NavigatorScreenParams<SettingsStackParamList>;

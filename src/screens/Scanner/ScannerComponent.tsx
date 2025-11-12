@@ -2,9 +2,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import React, { ReactElement, ReactNode, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
 import { FadeIn, FadeOut } from 'react-native-reanimated';
-import RNQRGenerator from 'rn-qr-generator';
 
 import BlurView from '../../components/BlurView';
 import Camera from '../../components/Camera';
@@ -34,7 +32,6 @@ const ScannerComponent = ({
 	const { t } = useTranslation('other');
 	const dimensions = useWindowDimensions();
 	const [torchMode, setTorchMode] = useState(false);
-	const [isChooingFile, setIsChoosingFile] = useState(false);
 	const [error, setError] = useState('');
 	const [showDebug, setShowDebug] = useState(false);
 	const [textDebug, setTextDebug] = useState('');
@@ -64,47 +61,6 @@ const ScannerComponent = ({
 		onRead(data);
 	};
 
-	const onPickFile = async (): Promise<void> => {
-		setIsChoosingFile(true);
-		try {
-			const result = await launchImageLibrary({
-				// Use 'mixed' so the user can search folders other than "Photos"
-				mediaType: 'mixed',
-				includeBase64: true,
-				quality: 0.1,
-			});
-
-			if (result.assets?.[0]) {
-				const { uri } = result.assets[0];
-
-				try {
-					// Read QR from image
-					const { values } = await RNQRGenerator.detect({ uri });
-
-					if (values.length === 0) {
-						showError(
-							'Sorry. Bitkit wasn’t able to detect a QR code in this image.',
-						);
-						return;
-					}
-
-					onRead(values[0]);
-				} catch {
-					showError(
-						'Sorry. Bitkit wasn’t able to detect a QR code in this image.',
-					);
-				}
-			}
-		} catch (err) {
-			console.error('Failed to open image file: ', err);
-			showError(
-				'Sorry. An error occurred when trying to open this image file.',
-			);
-		} finally {
-			setIsChoosingFile(false);
-		}
-	};
-
 	const onReadDebug = (): void => {
 		setShowDebug(true);
 	};
@@ -128,13 +84,6 @@ const ScannerComponent = ({
 						<View style={{ height: size, width: size }}>
 							{bottomSheet && <View style={styles.maskRing} />}
 							<View style={styles.actionsRow}>
-								<Button
-									style={styles.actionButton}
-									color="white10"
-									icon={<PictureIcon width={24} height={24} />}
-									disabled={isChooingFile}
-									onPress={onPickFile}
-								/>
 								<Button
 									style={styles.actionButton}
 									color="white10"

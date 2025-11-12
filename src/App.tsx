@@ -13,7 +13,6 @@ import { ThemeProvider } from 'styled-components/native';
 
 import './utils/i18n';
 import AppOnboarded from './AppOnboarded';
-import { toastConfig } from './components/Toast';
 import { useAppSelector } from './hooks/redux';
 import AppUpdate from './screens/AppUpdate';
 import { themeSelector } from './store/reselect/settings';
@@ -73,7 +72,7 @@ const App = (): ReactElement => {
 					</Suspense>
 				)}
 
-				<Toast config={toastConfig} />
+				<Toast />
 			</SafeAreaProvider>
 		</ThemeProvider>
 	);

@@ -8,12 +8,10 @@ import React, {
 	useState,
 } from 'react';
 import { NativeModules, Platform } from 'react-native';
-import QuickActions from 'react-native-quick-actions';
 import Toast from 'react-native-toast-message';
 import { ThemeProvider } from 'styled-components/native';
 
 import './utils/i18n';
-import './utils/quick-actions';
 import AppOnboarded from './AppOnboarded';
 import { toastConfig } from './components/Toast';
 import { useAppSelector } from './hooks/redux';
@@ -48,16 +46,7 @@ const App = (): ReactElement => {
 			setTimeout(NativeModules.SplashScreenModule.hide, 100);
 		}
 
-		const checkForRecovery = async (): Promise<void> => {
-			const action = await QuickActions.popInitialAction();
-			if (action?.title === 'Recovery') {
-				setShowRecovery(true);
-			}
-
-			setIsReady(true);
-		};
-
-		checkForRecovery();
+		setIsReady(true);
 		checkForAppUpdate();
 	}, []);
 

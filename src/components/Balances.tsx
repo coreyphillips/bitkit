@@ -6,11 +6,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useBalance } from '../hooks/wallet';
 import { RootNavigationProp } from '../navigation/types';
 import { View as ThemedView } from '../styles/components';
-import {
-	BitcoinCircleIcon,
-	LightningCircleIcon,
-	TransferIcon,
-} from '../styles/icons';
+import { BitcoinCircleIcon, TransferIcon } from '../styles/icons';
 import { Caption13Up } from '../styles/text';
 import Money from './Money';
 
@@ -52,19 +48,10 @@ const Balance = ({
 const Balances = (): ReactElement => {
 	const { t } = useTranslation('wallet');
 	const navigation = useNavigation<RootNavigationProp>();
-	const {
-		onchainBalance,
-		lightningBalance,
-		balanceInTransferToSpending,
-		balanceInTransferToSavings,
-	} = useBalance();
+	const { onchainBalance } = useBalance();
 
-	const onSavingsPress = (): void => {
+	const onBalancePress = (): void => {
 		navigation.navigate('Wallet', { screen: 'ActivitySavings' });
-	};
-
-	const onSpendingPress = (): void => {
-		navigation.navigate('Wallet', { screen: 'ActivitySpending' });
 	};
 
 	return (
@@ -73,18 +60,8 @@ const Balances = (): ReactElement => {
 				label={t('details_savings_title')}
 				balance={onchainBalance}
 				icon={<BitcoinCircleIcon width={24} height={24} />}
-				hasPending={balanceInTransferToSavings !== 0}
 				testID="ActivitySavings"
-				onPress={onSavingsPress}
-			/>
-			<ThemedView style={styles.divider} color="white16" />
-			<Balance
-				label={t('details_spending_title')}
-				balance={lightningBalance}
-				icon={<LightningCircleIcon width={24} height={24} />}
-				hasPending={balanceInTransferToSpending !== 0}
-				testID="ActivitySpending"
-				onPress={onSpendingPress}
+				onPress={onBalancePress}
 			/>
 		</View>
 	);

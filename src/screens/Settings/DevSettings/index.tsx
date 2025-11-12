@@ -45,46 +45,11 @@ const DevSettings = ({
 }: SettingsScreenProps<'DevSettings'>): ReactElement => {
 	const dispatch = useAppDispatch();
 	const { t } = useTranslation('lightning');
-	const [showDialog, setShowDialog] = useState(false);
 	const [throwError, setThrowError] = useState(false);
 	const selectedWallet = useAppSelector(selectedWalletSelector);
 	const selectedNetwork = useAppSelector(selectedNetworkSelector);
 	const addressType = useAppSelector(addressTypeSelector);
-	const warnings = useAppSelector(warningsSelector);
 	const { rbf } = useAppSelector(settingsSelector);
-
-	const clearWebRelayCache = (): void => {
-		const keys = storage.getAllKeys();
-		keys.forEach((key) => {
-			if (key.includes('WEB-RELAY-CLIENT')) {
-				storage.delete(key);
-			}
-		});
-	};
-
-	const exportLdkLogs = async (): Promise<void> => {
-		const result = await zipLogs({
-			includeJson: true,
-			includeBinaries: true,
-		});
-		if (result.isErr()) {
-			showToast({
-				type: 'warning',
-				title: t('error_logs'),
-				description: t('error_logs_description'),
-			});
-			return;
-		}
-
-		// Share the zip file
-		await Share.open({
-			type: 'application/zip',
-			url: `file://${result.value}`,
-			title: t('export_logs'),
-		});
-
-		setShowDialog(false);
-	};
 
 	const exportStore = async (): Promise<void> => {
 		const time = new Date().getTime();
@@ -132,51 +97,12 @@ const DevSettings = ({
 			],
 		},
 		{
-			title: 'Debug',
-			data: [
-				{
-					title: 'LDK',
-					type: EItemType.button,
-					testID: 'LDKDebug',
-					onPress: (): void => {
-						navigation.navigate('LdkDebug');
-					},
-				},
-			],
-		},
-		{
-			title: 'Wallet Checks',
-			data: [
-				{
-					title: `Warnings: ${warnings.length}`,
-					type: EItemType.textButton,
-					value: '',
-					testID: 'Warnings',
-				},
-			],
-		},
-		{
 			title: 'App Cache',
 			data: [
-				{
-					title: 'Clear WebRelay Cache',
-					type: EItemType.button,
-					onPress: clearWebRelayCache,
-				},
-				{
-					title: 'Clear Widgets Cache',
-					type: EItemType.button,
-					onPress: widgetsCache.clear,
-				},
 				{
 					title: 'Clear UTXOs',
 					type: EItemType.button,
 					onPress: clearUtxos,
-				},
-				{
-					title: 'Export LDK Logs',
-					type: EItemType.button,
-					onPress: () => setShowDialog(true),
 				},
 				{
 					title: 'Export Store',
@@ -196,16 +122,6 @@ const DevSettings = ({
 					onPress: () => dispatch(resetActivityState()),
 				},
 				{
-					title: 'Reset Backup State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetBackupState()),
-				},
-				{
-					title: 'Reset Blocktank State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetBlocktankState()),
-				},
-				{
 					title: 'Reset Current Wallet State',
 					type: EItemType.button,
 					onPress: async (): Promise<void> => {
@@ -219,39 +135,14 @@ const DevSettings = ({
 					onPress: () => dispatch(resetFeesState()),
 				},
 				{
-					title: 'Reset Lightning State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetLightningState()),
-				},
-				{
-					title: 'Reset Metadata State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetMetadataState()),
-				},
-				{
 					title: 'Reset Settings State',
 					type: EItemType.button,
 					onPress: () => dispatch(resetSettingsState()),
 				},
 				{
-					title: 'Reset Slashtags State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetSlashtagsState()),
-				},
-				{
-					title: 'Reset Todos State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetTodosState()),
-				},
-				{
 					title: 'Reset User State',
 					type: EItemType.button,
 					onPress: () => dispatch(resetUserState()),
-				},
-				{
-					title: 'Reset Widgets State',
-					type: EItemType.button,
-					onPress: () => dispatch(resetWidgetsState()),
 				},
 				{
 					title: 'Wipe App',
@@ -341,19 +232,7 @@ const DevSettings = ({
 		throw new Error('test render error');
 	}
 
-	return (
-		<>
-			<SettingsView title="Dev Settings" listData={settingsListData} />
-			<Dialog
-				visible={showDialog}
-				title="Export sensitive logs?"
-				description="This export contains sensitive data and gives control over your Lightning funds. Do you want to continue?"
-				cancelText="Cancel"
-				onCancel={(): void => setShowDialog(false)}
-				onConfirm={exportLdkLogs}
-			/>
-		</>
-	);
+	return <SettingsView title="Dev Settings" listData={settingsListData} />;
 };
 
 export default memo(DevSettings);

@@ -13,10 +13,7 @@ import BottomSheetNavigationHeader from '../../../components/BottomSheetNavigati
 import GradientView from '../../../components/GradientView';
 import NumberPad from '../../../components/NumberPad';
 import useColors from '../../../hooks/colors';
-import { useAppDispatch } from '../../../hooks/redux';
 import type { PinScreenProps } from '../../../navigation/types';
-import { pinTodo } from '../../../store/shapes/todos';
-import { hideTodo } from '../../../store/slices/todos';
 import { BodyM, BodyS } from '../../../styles/text';
 import { vibrate } from '../../../utils/helpers';
 import { addPin } from '../../../utils/settings';
@@ -27,7 +24,6 @@ const ChoosePIN = ({
 }: PinScreenProps<'ChoosePIN'>): ReactElement => {
 	const origPIN = route.params?.pin;
 	const { t } = useTranslation('security');
-	const dispatch = useAppDispatch();
 	const [pin, setPin] = useState<string>('');
 	const [tryAgain, setTryAgain] = useState<boolean>(false);
 	const { brand, brand08 } = useColors();
@@ -60,7 +56,6 @@ const ChoosePIN = ({
 			const pinsAreEqual = pin === origPIN;
 			if (pinsAreEqual) {
 				addPin(pin);
-				dispatch(hideTodo(pinTodo.id));
 				// replace the navigation stack to avoid going back to the PIN screen
 				navigation.reset({
 					index: 0,
@@ -74,7 +69,7 @@ const ChoosePIN = ({
 		}, 500);
 
 		return (): void => clearTimeout(timer);
-	}, [pin, origPIN, navigation, dispatch]);
+	}, [pin, origPIN, navigation]);
 
 	return (
 		<GradientView style={styles.container}>

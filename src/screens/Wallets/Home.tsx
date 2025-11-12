@@ -8,8 +8,6 @@ import BalanceHeader from '../../components/BalanceHeader';
 import Balances from '../../components/Balances';
 import DetectSwipe from '../../components/DetectSwipe';
 import SafeAreaInset from '../../components/SafeAreaInset';
-import Suggestions from '../../components/Suggestions';
-import Widgets from '../../components/Widgets';
 import useColors from '../../hooks/colors';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useBalance } from '../../hooks/wallet';
@@ -17,12 +15,10 @@ import ActivityListShort from '../../screens/Activity/ActivityListShort';
 import AppUpdate from '../../sheets/AppUpdate';
 import BackupPrompt from '../../sheets/BackupPrompt';
 import HighBalanceWarning from '../../sheets/HighBalanceWarning';
-import QuickPayPrompt from '../../sheets/QuickPayPrompt';
 import {
 	enableSwipeToHideBalanceSelector,
 	hideBalanceSelector,
 	hideOnboardingMessageSelector,
-	showWidgetsSelector,
 } from '../../store/reselect/settings';
 import {
 	ignoresHideBalanceToastSelector,
@@ -54,7 +50,6 @@ const Home = (): ReactElement => {
 		scanAllAddressesTimestampSelector,
 	);
 	const hideOnboardingSetting = useAppSelector(hideOnboardingMessageSelector);
-	const showWidgets = useAppSelector(showWidgetsSelector);
 	const insets = useSafeAreaInsets();
 	const { t } = useTranslation('wallet');
 
@@ -121,9 +116,7 @@ const Home = (): ReactElement => {
 					{hideOnboarding ? (
 						<>
 							<Balances />
-							<Suggestions />
 							<View style={styles.contentPadding}>
-								{showWidgets && <Widgets />}
 								<ActivityListShort />
 							</View>
 						</>
@@ -137,7 +130,6 @@ const Home = (): ReactElement => {
 			<BackupPrompt />
 			<HighBalanceWarning />
 			<AppUpdate />
-			<QuickPayPrompt />
 		</>
 	);
 };

@@ -11,11 +11,10 @@ end
 ENV['RCT_NEW_ARCH_ENABLED'] = '0'
 
 node_require('react-native/scripts/react_native_pods.rb')
-node_require('react-native-permissions/scripts/setup.rb')
 
 # Read min iOS version from Xcode project and set as min iOS version for Podfile
 require 'xcodeproj'
-project_path = File.expand_path('bitkit.xcodeproj', __dir__)
+project_path = File.expand_path('BeignetStarter.xcodeproj', __dir__)
 project = Xcodeproj::Project.open(project_path)
 min_ios_version_supported = project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
 puts "Set minimum iOS version supported using Xcode project: #{min_ios_version_supported}"
@@ -23,20 +22,13 @@ puts "Set minimum iOS version supported using Xcode project: #{min_ios_version_s
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
-setup_permissions([
-  'Camera',
-  'FaceID',
-  'Notifications',
-  'PhotoLibrary',
-])
-
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'bitkit' do
+target 'BeignetStarter' do
   config = use_native_modules!
 
   use_react_native!(

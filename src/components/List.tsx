@@ -12,7 +12,6 @@ import {
 import { SvgProps } from 'react-native-svg';
 
 import Switch from '../components/Switch';
-import DraggableList from '../screens/Settings/PaymentPreference/DraggableList';
 import { Checkmark, ChevronRight } from '../styles/icons';
 import {
 	BodyM,
@@ -227,8 +226,8 @@ const _Item = memo((item: ItemData): ReactElement => {
 	}
 
 	if (type === EItemType.draggable) {
-		const { value, onDragEnd } = item as DraggableItem;
-		return <DraggableList listData={value} onDragEnd={onDragEnd} />;
+		// Draggable list not supported in simplified wallet
+		return null;
 	}
 
 	if (type === EItemType.button) {

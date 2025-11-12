@@ -94,9 +94,6 @@ const SettingsNavigator = (): ReactElement => {
 			<Stack.Screen name="AboutSettings" component={AboutSettings} />
 			<Stack.Screen name="SupportSettings" component={SupportSettings} />
 			<Stack.Screen name="AppStatus" component={AppStatus} />
-			<Stack.Screen name="ReportIssue" component={ReportIssue} />
-			<Stack.Screen name="FormSuccess" component={FormSuccess} />
-			<Stack.Screen name="FormError" component={FormError} />
 			<Stack.Screen name="CurrenciesSettings" component={CurrenciesSettings} />
 			<Stack.Screen name="UnitSettings" component={UnitSettings} />
 			<Stack.Screen
@@ -115,15 +112,12 @@ const SettingsNavigator = (): ReactElement => {
 				component={AddressTypePreference}
 			/>
 			<Stack.Screen name="DevSettings" component={DevSettings} />
-			<Stack.Screen name="AddressViewer" component={AddressViewer} />
 			{/* <Stack.Screen name="ExportToPhone" component={ExportToPhone} /> */}
 			<Stack.Screen name="ResetAndRestore" component={ResetAndRestore} />
 			<Stack.Screen
 				name="BitcoinNetworkSelection"
 				component={BitcoinNetworkSelection}
 			/>
-			<Stack.Screen name="TagsSettings" component={TagsSettings} />
-			<Stack.Screen name="FeeSettings" component={FeeSettings} />
 		</Stack.Navigator>
 	);
 };

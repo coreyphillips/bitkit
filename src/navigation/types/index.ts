@@ -58,3 +58,8 @@ export type PinScreenProps<T extends keyof PinStackParamList> =
 
 export type SendScreenProps<T extends keyof SendStackParamList> =
 	NativeStackScreenProps<SendStackParamList, T>;
+
+// Backup screens (stub for remaining Backup screens)
+export type BackupScreenProps<T extends string> = NativeStackScreenProps<
+	Record<T, undefined>
+>;

@@ -9,3 +9,7 @@ export const resetAllSettings = async (): Promise<Result<string>> => {
 export const resetPinAndPassword = async (): Promise<Result<string>> => {
 	return ok('Reset complete');
 };
+
+export const wipeApp = async (): Promise<Result<string>> => {
+	return ok('App wiped');
+};

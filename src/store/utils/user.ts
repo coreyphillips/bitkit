@@ -5,3 +5,7 @@ import { Result, ok } from '@synonymdev/result';
 export const setupOnDeviceStorage = async (): Promise<Result<string>> => {
 	return ok('Device storage setup complete');
 };
+
+export const setGeoBlock = async (blocked: boolean): Promise<Result<string>> => {
+	return ok('Geo block set');
+};

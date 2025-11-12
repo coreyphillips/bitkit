@@ -65,13 +65,6 @@ const MainSettings = ({
 				onPress: (): void => navigation.navigate('SecuritySettings'),
 			},
 			{
-				title: t('backup_title'),
-				type: EItemType.button,
-				Icon: BackupIcon,
-				testID: 'BackupSettings',
-				onPress: (): void => navigation.navigate('BackupSettings'),
-			},
-			{
 				title: t('advanced_title'),
 				type: EItemType.button,
 				Icon: AdvancedIcon,

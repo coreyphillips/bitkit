@@ -21,15 +21,15 @@ const OnboardingWelcomeScreen = ({
 
 	const onGetStarted = (): void => {
 		setGeoBlock();
-		navigation.navigate('Slideshow');
+		navigation.navigate('MultipleDevices');
 	};
 
 	const onSkipIntro = (): void => {
-		navigation.navigate('Slideshow', { skipIntro: true });
+		navigation.navigate('MultipleDevices');
 	};
 
 	const onSwipeLeft = (): void => {
-		navigation.navigate('Slideshow');
+		navigation.navigate('MultipleDevices');
 	};
 
 	return (

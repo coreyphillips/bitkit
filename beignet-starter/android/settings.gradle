@@ -1,0 +1,14 @@
+pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+rootProject.name = 'BeignetStarter'
+include ':rn-android-keyboard-adjust'
+project(':rn-android-keyboard-adjust').projectDir = new File(rootProject.projectDir, '../node_modules/rn-android-keyboard-adjust/android')
+include ':rn-qr-generator'
+project(':rn-qr-generator').projectDir = new File(rootProject.projectDir, '../node_modules/rn-qr-generator/android')
+include ':react-native-fs'
+project(':react-native-fs').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fs/android')
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+includeBuild('../node_modules/@react-native/gradle-plugin')
+
